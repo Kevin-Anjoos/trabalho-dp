@@ -1,6 +1,7 @@
 // C:\Users\aluno.den\Downloads\mercado\src\components\page\ContatoPage\index.jsx
 import './style.css'
 import { useState, useEffect } from 'react'
+import { sendContato } from '../../../services/api'
 import { useSearchParams } from 'react-router-dom'
 
 function FaleConoscoPage() {
@@ -8,6 +9,7 @@ function FaleConoscoPage() {
     const service = searchParams.get('service')
 
     const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
     const [mensagem, setMensagem] = useState('')
 
     useEffect(() => {
@@ -16,12 +18,19 @@ function FaleConoscoPage() {
         }
     }, [service])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('form enviado (demo)', { nome, mensagem })
-        alert('Mensagem enviada (demo)')
-        setNome('')
-        setMensagem('')
+        try {
+            const payload = { nome, email, mensagem }
+            const res = await sendContato(payload)
+            alert(res.data || 'Mensagem enviada com sucesso')
+            setNome('')
+            setEmail('')
+            setMensagem('')
+        } catch (err) {
+            console.error('Erro ao enviar contato', err)
+            alert(err?.response?.data || 'Erro ao enviar mensagem')
+        }
     }
 
     return (
@@ -42,6 +51,11 @@ function FaleConoscoPage() {
                 <div>
                     <label htmlFor="nome">Nome</label>
                     <input id="nome" name="nome" type="text" placeholder="Seu nome" value={nome} onChange={e => setNome(e.target.value)} />
+                </div>
+                <div style={{height:12}} />
+                <div>
+                    <label htmlFor="email">E-mail</label>
+                    <input id="email" name="email" type="email" placeholder="seu@exemplo.com" value={email} onChange={e => setEmail(e.target.value)} />
                 </div>
                 <div style={{height:12}} />
                 <div>

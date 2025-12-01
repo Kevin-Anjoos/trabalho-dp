@@ -19,4 +19,14 @@ export async function checkout() {
   return api.post('/checkout');
 }
 
+export async function sendContato(contato) {
+  // contato: { nome, email, mensagem }
+  return api.post('/contato', contato);
+}
+
+export async function login(credentials) {
+  // credentials: { email, senha }
+  return api.post('/login', credentials);
+}
+
 export default api;

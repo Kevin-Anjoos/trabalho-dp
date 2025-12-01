@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app-root">
       <header className="app-header">
-        <h1>Mercado Desatakarejo</h1>
+        <h1>Mercado Kpex</h1>
         <nav className="app-nav">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/produtos" className="nav-link">Produtos</Link>
@@ -27,7 +27,7 @@ function App() {
               color: '#e6eef8'
             }}>
               <h2 style={{ fontSize: '2.5rem', marginBottom: '20px', color: '#fff' }}>
-                Bem-vindo ao Mercado Desatakarejo! 🛒
+                Bem-vindo ao Mercado Kpex ! 🛒
               </h2>
               <p style={{ fontSize: '1.1rem', marginBottom: '30px', color: '#cbd5e1' }}>
                 Confira nossos produtos e ofertas especiais. Use o menu acima para navegar.
